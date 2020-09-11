@@ -4,7 +4,7 @@ namespace Parking\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class RateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        return view('rates.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('rates.create');
     }
 
     /**
