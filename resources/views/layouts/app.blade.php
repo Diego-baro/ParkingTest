@@ -10,7 +10,6 @@
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
    </head>
    <body>
       <!-- Navbar -->
@@ -25,8 +24,8 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#">Usuarios</a></li>
-                  <li><a href="#">Tarifas</li>
+                  <li><a href="{{ route('user.index') }}">Usuarios</a></li>
+                  <li><a href="{{ route('rate.index') }}">Tarifas</a></li>
                </ul>
             </div>
          </div>

@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::resource('user', 'UserController');
 Route::resource('rate', 'RateController');
+Auth::routes();

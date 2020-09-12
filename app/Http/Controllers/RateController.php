@@ -2,7 +2,9 @@
 
 namespace Parking\Http\Controllers;
 
+use Parking\Rate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RateController extends Controller
 {
@@ -13,7 +15,8 @@ class RateController extends Controller
      */
     public function index()
     {
-        return view('rates.index');
+        $rate = Rate::all();
+        return view('rates.index', compact('rate'));
     }
 
     /**
@@ -34,7 +37,11 @@ class RateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Rate = new Rate();
+        $Rate->vtype = $request->input('vtype');
+        $Rate->vbrand = $request->input('vbrand');
+        $Rate->save();
+        return redirect()->route('rate.index');
     }
 
     /**

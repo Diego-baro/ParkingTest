@@ -9,7 +9,8 @@
             <div class="panel panel-primary">
                <div class="panel-heading">Formulario Nuevo Usuarios</div>
                <div class="panel-body">
-                  <form>
+                  <form class="form-group" method="POST" action="{{url('/user')}}">
+            {{ csrf_field() }}
                      <p>Información del Usuario</p>
                      <div class="title"></div>
                      <div class="form-group">
@@ -29,9 +30,15 @@
                      <div class="form-group">
                         <label for="vtype">Example select</label>
                         <select class="form-control" id="vtype" name="vtype">
-                           <option>Carro</option>
-                           <option>Moto</option>
-                           <option>Bicicleta</option>
+                           <option value="Carro">Carro</option>
+                           <option value="Moto">Moto</option>
+                           <option value="Bicicleta">Bicicleta</option>
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <label for="vpuesto">Puesto</label>
+                        <select class="form-control" id="vpuesto" name="vpuesto">
+                           <option value="Carro">Carro</option>
                         </select>
                      </div>
                      <div class="form-group">

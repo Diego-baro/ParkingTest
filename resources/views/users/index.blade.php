@@ -17,6 +17,18 @@
             <th scope="col">Placa</th>
             <th scope="col">Fecha</th>
          </tr>
+          @foreach($parking as $parkings)
+        <tr>
+            <td>{{$parkings->id}}</td>
+            <td>{{$parkings->iduser}}</td>
+            <td>{{$parkings->uname}}</td>
+            <td>{{$parkings->ulname}}</td>
+            <td>{{$parkings->vtype}}</td>
+            <td>{{$parkings->vbrand}}</td>
+            <td>{{$parkings->vplate}}</td>
+            <td>{{$parkings->vdate}}</td>
+        </tr>
+        @endforeach
       </thead>
    </table>
 </div>

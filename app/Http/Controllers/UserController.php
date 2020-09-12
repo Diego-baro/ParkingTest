@@ -2,7 +2,9 @@
 
 namespace Parking\Http\Controllers;
 
+use Parking\Userparking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -13,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $parking = Userparking::all();
+        return view('users.index', compact('parking'));
     }
 
     /**
@@ -34,7 +37,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userparking = new Userparking();
+        $userparking->iduser = $request->input('iduser');
+        $userparking->uname = $request->input('uname');
+        $userparking->ulname = $request->input('ulname');
+        $userparking->vtype = $request->input('vtype');
+        $userparking->vpuesto = $request->input('vpuesto');
+        $userparking->vbrand = $request->input('vbrand');
+        $userparking->vplate = $request->input('vplate');
+        $userparking->vdate = $request->input('vdate');
+        $userparking->save();
+        return redirect()->route('user.index');
     }
 
     /**

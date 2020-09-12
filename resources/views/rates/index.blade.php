@@ -12,6 +12,15 @@
             <th scope="col">Tarifa</th>
          </tr>
       </thead>
+      <tbody>
+        @foreach($rate as $rates)
+        <tr>
+            <td>{{$rates->id}}</td>
+            <td>{{$rates->vtype}}</td>
+            <td>{{$rates->vbrand}}</td>
+        </tr>
+        @endforeach
+      </tbody>
    </table>
 </div>
 @endsection
