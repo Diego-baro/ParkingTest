@@ -17,4 +17,5 @@ Route::get('/', function () {
 
 Route::resource('user', 'UserController');
 Route::resource('rate', 'RateController');
+Route::get('generate-pdf','reportController@generatePDF');
 Auth::routes();

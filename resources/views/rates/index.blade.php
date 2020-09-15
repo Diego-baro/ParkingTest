@@ -10,6 +10,7 @@
             <th scope="col">#</th>
             <th scope="col">Tipo</th>
             <th scope="col">Tarifa</th>
+            <th scope="col">Editar</th>
          </tr>
       </thead>
       <tbody>
@@ -18,6 +19,9 @@
             <td>{{$rates->id}}</td>
             <td>{{$rates->vtype}}</td>
             <td>{{$rates->vbrand}}</td>
+              <td >
+                <a href="/rate/{{$rates->slug}}" class="btn btn-success active border-actions" role="button" aria-pressed="true">Vista previa</a>
+            </td>
         </tr>
         @endforeach
       </tbody>

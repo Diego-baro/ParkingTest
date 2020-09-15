@@ -16,6 +16,7 @@
             <th scope="col">Marca</th>
             <th scope="col">Placa</th>
             <th scope="col">Fecha</th>
+            <th scope="col">Editar</th>
          </tr>
           @foreach($parking as $parkings)
         <tr>
@@ -27,6 +28,9 @@
             <td>{{$parkings->vbrand}}</td>
             <td>{{$parkings->vplate}}</td>
             <td>{{$parkings->vdate}}</td>
+            <td >
+                <a href="/user/{{$parkings->slug}}" class="btn btn-success active border-actions" role="button" aria-pressed="true">Vista previa</a>
+            </td>
         </tr>
         @endforeach
       </thead>

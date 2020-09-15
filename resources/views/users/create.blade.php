@@ -28,17 +28,11 @@
                      <p>Información del Vehiculo</p>
                      <div class="title"></div>
                      <div class="form-group">
-                        <label for="vtype">Example select</label>
+                        <label for="vtype">Tipo de Vehiculo</label>
                         <select class="form-control" id="vtype" name="vtype">
-                           <option value="Carro">Carro</option>
-                           <option value="Moto">Moto</option>
-                           <option value="Bicicleta">Bicicleta</option>
-                        </select>
-                     </div>
-                     <div class="form-group">
-                        <label for="vpuesto">Puesto</label>
-                        <select class="form-control" id="vpuesto" name="vpuesto">
-                           <option value="Carro">Carro</option>
+                           <option value="2">Carro</option>
+                           <option value="3">Moto</option>
+                           <option value="4">Bicicleta</option>
                         </select>
                      </div>
                      <div class="form-group">

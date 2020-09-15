@@ -2,11 +2,10 @@
 
 namespace Parking\Http\Controllers;
 
-use Parking\Rate;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use PDF;
 
-class RateController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class RateController extends Controller
      */
     public function index()
     {
-        $rate = Rate::all();
-        return view('rates.index', compact('rate'));
+        //
     }
 
     /**
@@ -26,7 +24,7 @@ class RateController extends Controller
      */
     public function create()
     {
-        return view('rates.create');
+        //
     }
 
     /**
@@ -37,12 +35,7 @@ class RateController extends Controller
      */
     public function store(Request $request)
     {
-        $Rate = new Rate();
-        $Rate->vtype = $request->input('vtype');
-        $Rate->vbrand = $request->input('vbrand');
-        $Rate->slug = $request->input('vtype');
-        $Rate->save();
-        return redirect()->route('rate.index');
+        //
     }
 
     /**
@@ -51,10 +44,9 @@ class RateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-       $rate = Rate::where('slug', '=',$slug)->firstOrFail(); 
-       return view('rates.show', compact('rate'));
+        //
     }
 
     /**
@@ -89,5 +81,19 @@ class RateController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function generatePDF()
+
+    {
+
+        $data = ['title' => 'Welcome to HDTuto.com'];
+
+        $pdf = PDF::loadView('myPDF', $data);
+
+
+
+        return $pdf->download('hdtuto.pdf');
+
     }
 }
