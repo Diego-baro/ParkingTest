@@ -17,5 +17,12 @@ Route::get('/', function () {
 
 Route::resource('user', 'UserController');
 Route::resource('rate', 'RateController');
-Route::get('generate-pdf','reportController@generatePDF');
+Route::resource('report', 'ReportController');
+Route::get('reportea/{idguest}/{idbook}','reportController@reporteA');
+Route::get('reporteb/{idguest}/{idbook}','reportController@reporteB');
+Route::get('reportec/{idguest}/{idbook}','reportController@reporteC');
+Route::get('reported/{idguest}/{idbook}','reportController@reporteD');
+
 Auth::routes();
+
+

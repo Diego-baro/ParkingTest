@@ -2,8 +2,14 @@
 
 namespace Parking\Http\Controllers;
 
+use Parking\Userparking;
+use Parking\Charge;
+use Parking\Puts;
+use Parking\Rates;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PDF;
+
 
 class ReportController extends Controller
 {
@@ -14,7 +20,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        return view('reports.index');
     }
 
     /**
@@ -83,17 +89,49 @@ class ReportController extends Controller
         //
     }
 
-    public function generatePDF()
+    public function reporteA($idguest, $idbook)
 
     {
+      $data =  DB::select('SELECT put, count(*) rankin FROM charges where created_at between created_at AND updated_at group by put order by rankin DESC');
 
-        $data = ['title' => 'Welcome to HDTuto.com'];
+      $pdf = PDF::loadView('reportea', compact('data'));
 
-        $pdf = PDF::loadView('myPDF', $data);
+      return $pdf->download('reporteA.pdf');
 
+    }
 
+    public function reporteB($idguest, $idbook)
 
-        return $pdf->download('hdtuto.pdf');
+    {
+      $data =  DB::select('SELECT put, count(*) rankin FROM charges where created_at between created_at AND updated_at group by put order by rankin DESC');
+
+      $pdf = PDF::loadView('reporteb', compact('data'));
+
+      return $pdf->download('reporteB.pdf');
+
+    }
+
+     public function reporteC($idguest, $idbook)
+
+    {
+        //(SQL: SELECT c.type, r.vtype, count(*) rankin FROM rates AS r INNER JOIN charges AS c WHERE c.type = r.id and c.created_at between c.created_at AND c.updated_at group by c.type order by rankin
+
+      $data =  DB::select('SELECT type, count(*) rankin FROM charges where created_at between created_at AND updated_at group by type order by rankin DESC');
+
+      $pdf = PDF::loadView('reportec', compact('data'));
+
+      return $pdf->download('reporteC.pdf');
+
+    }
+
+     public function reporteD($idguest, $idbook)
+
+    {
+      $data =  DB::select('SELECT put, count(*) rankin FROM charges where created_at between created_at AND updated_at group by put order by rankin DESC');
+
+      $pdf = PDF::loadView('reported', compact('data'));
+
+      return $pdf->download('reporteD.pdf');
 
     }
 }

@@ -9,8 +9,7 @@
             <div class="panel panel-primary">
                <div class="panel-heading">Formulario Tarifa</div>
                <div class="panel-body">
-                   <form class="form-group" method="POST" action="{{url('/rate')}}">
-            {{ csrf_field() }}
+                   <form class="form-group" method="POST" action="{{url('/report/reportea')}}">
                      <p>Crear Tarifa</p>
                      <div class="title"></div>
                      <div class="form-group">

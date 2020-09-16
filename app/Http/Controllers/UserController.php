@@ -7,6 +7,7 @@ use Parking\Charge;
 use Parking\Puts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class UserController extends Controller
 {
@@ -43,7 +44,7 @@ class UserController extends Controller
         $putr = 1;      
         if($request->input('vtype') == 2){
             $put = DB::table('puts')->select('put','type','state')->where('type','=',2)->where('state','=',1)->first();
-            DB::update('UPDATE `puts` SET `state` = ? WHERE `puts`.`id` = 1', [0]);
+            DB::update('UPDATE `puts` SET `state` = ? WHERE `puts`.`type` = ? and `puts`.`put` = ?', [0,$put->type, $put->put]);
             $rate = new Charge();
             $rate->type = $request->input('vtype');
             $rate->plate = $request->input('vplate');
@@ -54,7 +55,7 @@ class UserController extends Controller
 
         if($request->input('vtype') == 3){
             $put = DB::table('puts')->select('put','type','state')->where('type','=',3)->where('state','=',1)->first();
-            DB::update('UPDATE `puts` SET `state` = ? WHERE `puts`.`id` = 1', [0]);
+            DB::update('UPDATE `puts` SET `state` = ? WHERE `puts`.`type` = ? and `puts`.`put` = ?', [0,$put->type, $put->put]);
             $rate = new Charge();
             $rate->type = $request->input('vtype');
             $rate->plate = $request->input('vplate');
@@ -65,7 +66,7 @@ class UserController extends Controller
 
         if($request->input('vtype') == 4){
             $put = DB::table('puts')->select('put','type','state')->where('type','=',4)->where('state','=',1)->first();
-            DB::update('UPDATE `puts` SET `state` = ? WHERE `puts`.`id` = 1', [0]);
+            DB::update('UPDATE `puts` SET `state` = ? WHERE `puts`.`type` = ? and `puts`.`put` = ?', [0,$put->type, $put->put]);
             $rate = new Charge();
             $rate->type = $request->input('vtype');
             $rate->plate = $request->input('vplate');
@@ -85,9 +86,12 @@ class UserController extends Controller
         $userparking->slug = $request->input('iduser');
         $userparking->save();
 
-        dd();
-        return view('users.show');
+        $data =  DB::select('SELECT plate,iduser,put, p.created_at FROM `userparkings` as p inner join charges as c where p.vplate = c.plate AND p.iduser = ?',[$request->input('iduser')]);
 
+
+        $pdf = PDF::loadView('comprobante', compact('data'));
+
+        return $pdf->download('comprobante.pdf');
     }
 
     /**
